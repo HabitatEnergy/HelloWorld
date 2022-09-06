@@ -22,10 +22,13 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v3 
       - name: Build and publish docker images
-        uses: VaultVulp/gp-docker-action@1.1.7
+        uses: docker/build-push-action@v1
         with:
          github-token: ${{ secrets.TOKEN }} # Provide GITHUB_TOKEN to login into the GitHub Packages
          image-name: myapp # Provide Docker image name
          image-tag: head # Provide Docker image tag
+         dockerfile: Dockerfile
+         repository: my/repository
+         tag_with_ref: true
 
     
