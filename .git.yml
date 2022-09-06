@@ -1,0 +1,34 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "release" ]
+  pull_request:
+    branches: [ "release" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  push_to_registries:
+    name: push images to registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v3 
+      - name: Build and publish docker images
+        uses: docker/build-push-action@v1
+        with:
+         github-token: ${{ secrets.TOKEN }} # Provide GITHUB_TOKEN to login into the GitHub Packages
+         image-name: myapp # Provide Docker image name
+         image-tag: head # Provide Docker image tag
+         dockerfile: Dockerfile
+         repository: my/repository
+         tag_with_ref: true
+
+    
