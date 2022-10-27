@@ -13,7 +13,7 @@ python3.8 -m pip install -r requirements.txt
 ## Running the app
 
 ```
-uvicorn hello.main:app
+uvicorn main:app
 ```
 
 The app will listen on port 8000.
