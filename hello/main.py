@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from .greeting import greet
+from greeting import greet
 
 app = FastAPI()
 
